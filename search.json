@@ -1,16 +1,58 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "epps6356",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2\n\n\n\ntopic 1\n## Abstract\n\n\nThe other thing\n\nare bullet points\n\ntext-as string"
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "About the Author",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "I’m a graduate student in the School of Economic, Political and Policy Sciences at the University of Texas at Dallas. I plan on completing my M.S. in Economics in December 2024.\n\nMy academic interests include:\n\nMacro/Microeconomics\n\n\nProgramming (R,Python,Quarto)\n\n\nBusiness and Economic Forecasting\n\n\nData Visualization\n\n\n\nCheck out my Resume"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "EPPS 6356: Data Visualization",
+    "section": "",
+    "text": "Welcome to my personal website for Data Visualization!\nCheck out what I’ve been working on below."
+  },
+  {
+    "objectID": "Assignment 1.html",
+    "href": "Assignment 1.html",
+    "title": "EPPS 6356: Assignment 1",
+    "section": "",
+    "text": "Part 1: Anscombe’s Quartet Data Sets\nThis assignment had us look at Anscombe’s Quartet, a collection of four sets of data points that create the same linear regression model even though the distributions vary greatly across all models.\n\n\nCode\ndata(anscombe)# Load Anscombe's data\nView(anscombe) # View the data\nsummary(anscombe)\n\n\n       x1             x2             x3             x4           y1        \n Min.   : 4.0   Min.   : 4.0   Min.   : 4.0   Min.   : 8   Min.   : 4.260  \n 1st Qu.: 6.5   1st Qu.: 6.5   1st Qu.: 6.5   1st Qu.: 8   1st Qu.: 6.315  \n Median : 9.0   Median : 9.0   Median : 9.0   Median : 8   Median : 7.580  \n Mean   : 9.0   Mean   : 9.0   Mean   : 9.0   Mean   : 9   Mean   : 7.501  \n 3rd Qu.:11.5   3rd Qu.:11.5   3rd Qu.:11.5   3rd Qu.: 8   3rd Qu.: 8.570  \n Max.   :14.0   Max.   :14.0   Max.   :14.0   Max.   :19   Max.   :10.840  \n       y2              y3              y4        \n Min.   :3.100   Min.   : 5.39   Min.   : 5.250  \n 1st Qu.:6.695   1st Qu.: 6.25   1st Qu.: 6.170  \n Median :8.140   Median : 7.11   Median : 7.040  \n Mean   :7.501   Mean   : 7.50   Mean   : 7.501  \n 3rd Qu.:8.950   3rd Qu.: 7.98   3rd Qu.: 8.190  \n Max.   :9.260   Max.   :12.74   Max.   :12.500  \n\n\n\n\nCode\n## Simple version\n# plot(anscombe$x1,anscombe$y1)\n# summary(anscombe)\n\n# Create four model objects\nlm1 &lt;- lm(y1 ~ x1, data=anscombe)\n# summary(lm1)\nlm2 &lt;- lm(y2 ~ x2, data=anscombe)\n# summary(lm2)\nlm3 &lt;- lm(y3 ~ x3, data=anscombe)\n# summary(lm3)\nlm4 &lt;- lm(y4 ~ x4, data=anscombe)\n# summary(lm4)\n# plot(anscombe$x1,anscombe$y1)\n# abline(coefficients(lm1))\n# plot(anscombe$x2,anscombe$y2)\n# abline(coefficients(lm2))\n# plot(anscombe$x3,anscombe$y3)\n# abline(coefficients(lm3))\n# plot(anscombe$x4,anscombe$y4)\n# abline(coefficients(lm4))\n\n\n## Fancy version (per help file)\n\nff &lt;- y ~ x\nmods &lt;- setNames(as.list(1:4), paste0(\"lm\", 1:4))\n\n# Plot using for loop\nfor(i in 1:4) {\n  ff[2:3] &lt;- lapply(paste0(c(\"y\",\"x\"), i), as.name)\n  ## or   ff[[2]] &lt;- as.name(paste0(\"y\", i))\n  ##      ff[[3]] &lt;- as.name(paste0(\"x\", i))\n  mods[[i]] &lt;- lmi &lt;- lm(ff, data = anscombe)\n  print(anova(lmi))\n}\n\n\nAnalysis of Variance Table\n\nResponse: y1\n          Df Sum Sq Mean Sq F value  Pr(&gt;F)   \nx1         1 27.510 27.5100   17.99 0.00217 **\nResiduals  9 13.763  1.5292                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nAnalysis of Variance Table\n\nResponse: y2\n          Df Sum Sq Mean Sq F value   Pr(&gt;F)   \nx2         1 27.500 27.5000  17.966 0.002179 **\nResiduals  9 13.776  1.5307                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nAnalysis of Variance Table\n\nResponse: y3\n          Df Sum Sq Mean Sq F value   Pr(&gt;F)   \nx3         1 27.470 27.4700  17.972 0.002176 **\nResiduals  9 13.756  1.5285                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nAnalysis of Variance Table\n\nResponse: y4\n          Df Sum Sq Mean Sq F value   Pr(&gt;F)   \nx4         1 27.490 27.4900  18.003 0.002165 **\nResiduals  9 13.742  1.5269                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nCode\nsapply(mods, coef)  # Note the use of this function\n\n\n                  lm1      lm2       lm3       lm4\n(Intercept) 3.0000909 3.000909 3.0024545 3.0017273\nx1          0.5000909 0.500000 0.4997273 0.4999091\n\n\n\n\nCode\n# lapply(mods, function(fm) coef(summary(fm)))\n# Preparing for the plots\nop &lt;- par(mfrow = c(2, 2), mar = 0.1+c(4,4,1,1), oma =  c(0, 0, 2, 0))\n\n# Plot charts using for loop\nfor(i in 1:4) {\n  ff[2:3] &lt;- lapply(paste0(c(\"y\",\"x\"), i), as.name)\n  plot(ff, data = anscombe, col = \"red\", pch = 21, bg = \"orange\", cex = 1.2,\n       xlim = c(3, 19), ylim = c(3, 13))\n  abline(mods[[i]], col = \"blue\")\n}\nmtext(\"Anscombe's 4 Regression Data Sets\", outer = TRUE, cex = 1.5)\n\n\n\n\n\n\n\n\n\nCode\npar(op)\n\n\n\n\n\nPart 2: Leaf.R\n\n\nCode\n# Define elements in plant art\n# Each image corresponds to a different axiom, rules, angle and depth\n\n# Leaf of Fall\n\naxiom=\"X\"\nrules=list(\"X\"=\"F-[[X]+X]+F[+FX]-X\", \"F\"=\"FF\")\nangle=22.5\ndepth=6\n\n\nfor (i in 1:depth) axiom=gsubfn(\".\", rules, axiom)\n\nactions=str_extract_all(axiom, \"\\\\d*\\\\+|\\\\d*\\\\-|F|L|R|\\\\[|\\\\]|\\\\|\") %&gt;% unlist\n\nstatus=data.frame(x=numeric(0), y=numeric(0), alfa=numeric(0))\npoints=data.frame(x1 = 0, y1 = 0, x2 = NA, y2 = NA, alfa=90, depth=1)\n\n\n# Generating data\n# Note: may take a minute or two\n\nfor (action in actions)\n{\n  if (action==\"F\")\n  {\n    x=points[1, \"x1\"]+cos(points[1, \"alfa\"]*(pi/180))\n    y=points[1, \"y1\"]+sin(points[1, \"alfa\"]*(pi/180))\n    points[1,\"x2\"]=x\n    points[1,\"y2\"]=y\n    data.frame(x1 = x, y1 = y, x2 = NA, y2 = NA,\n               alfa=points[1, \"alfa\"],\n               depth=points[1,\"depth\"]) %&gt;% rbind(points)-&gt;points\n  }\n  if (action %in% c(\"+\", \"-\")){\n    alfa=points[1, \"alfa\"]\n    points[1, \"alfa\"]=eval(parse(text=paste0(\"alfa\",action, angle)))\n  }\n  if(action==\"[\"){\n    data.frame(x=points[1, \"x1\"], y=points[1, \"y1\"], alfa=points[1, \"alfa\"]) %&gt;%\n      rbind(status) -&gt; status\n    points[1, \"depth\"]=points[1, \"depth\"]+1\n  }\n\n  if(action==\"]\"){\n    depth=points[1, \"depth\"]\n    points[-1,]-&gt;points\n    data.frame(x1=status[1, \"x\"], y1=status[1, \"y\"], x2=NA, y2=NA,\n               alfa=status[1, \"alfa\"],\n               depth=depth-1) %&gt;%\n      rbind(points) -&gt; points\n    status[-1,]-&gt;status\n  }\n}\n\nggplot() +\n  geom_segment(aes(x = x1, y = y1, xend = x2, yend = y2),\n               lineend = \"round\",\n               color=\"thistle3\", # Set your own Fall color?\n               data=na.omit(points)) +\n  coord_fixed(ratio = 1) +\n  theme_void() # No grid nor axes # burlywood3 was original color"
+  },
+  {
+    "objectID": "Assignments.html",
+    "href": "Assignments.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "This is where all of the Assignments for Data Visualization will be posted."
+  },
+  {
+    "objectID": "Assignments.html#assignments",
+    "href": "Assignments.html#assignments",
+    "title": "Assignments",
+    "section": "Assignments",
+    "text": "Assignments"
+  },
+  {
+    "objectID": "assignments.html",
+    "href": "assignments.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "This is where all of the Assignments for Data Visualization will be posted."
+  },
+  {
+    "objectID": "test.html",
+    "href": "test.html",
+    "title": "Test",
+    "section": "",
+    "text": "Here is a test file. Let’s see how it looks."
+  },
+  {
+    "objectID": "assignmain.html",
+    "href": "assignmain.html",
+    "title": "Assignments",
+    "section": "",
+    "text": "Use the sick sidebar to navigate to the desired assignment.\n\nAssignment 1\nHere, we take a look at Anscombe’s Quartet, as well as creating a lovely little leaf in R. Click the link to check it out!"
   }
 ]
