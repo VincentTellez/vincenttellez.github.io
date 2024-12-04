@@ -4,14 +4,14 @@
     "href": "about.html",
     "title": "About the Author",
     "section": "",
-    "text": "I’m a graduate student in the School of Economic, Political and Policy Sciences at the University of Texas at Dallas. I plan on completing my M.S. in Economics in December 2024.\n\nMy academic interests include:\n\nMacro/Microeconomics\n\n\nProgramming (R,Python,Quarto)\n\n\nBusiness and Economic Forecasting\n\n\nData Visualization\n\n\n\nCheck out my Resume"
+    "text": "I’m a graduate student in the School of Economic, Political and Policy Sciences at the University of Texas at Dallas. I plan on completing my M.S. in Economics in December 2024.\n\nMy academic interests include:\n\nMacro/Microeconomics\n\n\nProgramming (R,Python,Quarto)\n\n\nBusiness and Economic Forecasting\n\n\nData Visualization\n\n\n\nCheck out my resume"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "EPPS 6356: Data Visualization",
+    "title": "\nVincent\n",
     "section": "",
-    "text": "Welcome to my personal website for Data Visualization!\nCheck out what I’ve been working on below."
+    "text": "Vincent\n\n\nTellez\n\n\nsome text some other text some more text"
   },
   {
     "objectID": "Assignment 1.html",
@@ -51,8 +51,29 @@
   {
     "objectID": "assignmain.html",
     "href": "assignmain.html",
-    "title": "Assignments",
+    "title": "EPPS 6356",
     "section": "",
-    "text": "Use the sick sidebar to navigate to the desired assignment.\n\nAssignment 1\nHere, we take a look at Anscombe’s Quartet, as well as creating a lovely little leaf in R. Click the link to check it out!"
+    "text": "This page is dedicated to the work I’ve completed for Dr. Karl Ho’s course in Data Visualization at the University of Texas at Dallas. Below, you’ll find links to my assignments and reviews of the recommended readings and videos.\nIf something doesn’t look right or a link isn’t you taking where it’s supposed to go, please shoot me an email:  vdt200000@utdallas.edu"
+  },
+  {
+    "objectID": "assignmain.html#assignments",
+    "href": "assignmain.html#assignments",
+    "title": "EPPS 6356",
+    "section": "Assignments",
+    "text": "Assignments\n\nAssignment 1\nHere, we take a look at Anscombe’s Quartet, as well as a lovely leaf graphic created in R. Click the title to check it out!\n\n\nAssignment 4\nHackathon Officially begins! Click on title to see what the team came up with.\n\n\nAssignment 7\nReturn of Hackathon! This time around we are builing a shiny app that uses the ‘mtcars’ data from R."
+  },
+  {
+    "objectID": "assignmain.html#reviews",
+    "href": "assignmain.html#reviews",
+    "title": "EPPS 6356",
+    "section": "Reviews",
+    "text": "Reviews"
+  },
+  {
+    "objectID": "assignment7.html",
+    "href": "assignment7.html",
+    "title": "EPPS 6356: Assignment 7",
+    "section": "",
+    "text": "Guidelines:\n\nMust use R Graphics or ggplot2\nMust be completed within 48 hours\nThe app must generate a Scatter Plot (Two Variables), Bubble Chart, and one additional chart (teams choose)."
   }
 ]

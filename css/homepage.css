@@ -1,0 +1,46 @@
+/* This is custom css for the homepage */
+
+body { 
+  background-color: black;
+  color: white;
+}
+
+/*/ <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900
+
+.montserrat-<uniquifier> {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+h1, h2 {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+  font-size: 6.0em;
+}
+
+h1 {
+  text-align: center;
+  /*background-color: white;*/
+  color:white;
+
+}
+
+h2 {
+  /*text-align: center;*/
+  color:white;
+  direction:rtl;
+  line-height: 0em;
+}
+
+
+
+
+
+
