@@ -1,0 +1,13 @@
+---
+format:
+  html:
+    navbar: true
+    toc: false
+---
+
+</br>
+</br>
+</br>
+
+<img src="/images/epps6356_homepage.png" class="nametag" alt="name tag for Vincent Tellez (author)"/>
+
