@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Vincent Tellez">
+<meta name="description" content="This dashboard displays horizontal bar charts comparing various metrics of four U.S. Market Sectors">
 
-<title>EPPS 6356: Assignment 1 – Vincent Tellez</title>
+<title>U.S. Stock Sector Analysis – Vincent Tellez</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -106,27 +106,36 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#days-before-and-after-the-2020-election" id="toc-days-before-and-after-the-2020-election" class="nav-link" data-scroll-target="#days-before-and-after-the-2020-election">60 Days before and After the 2020 Election</a></li>
+  <li><a href="#days-before-and-after-the-2020-election-1" id="toc-days-before-and-after-the-2020-election-1" class="nav-link" data-scroll-target="#days-before-and-after-the-2020-election-1">30 Days before and after the 2020 Election</a></li>
+  <li><a href="#days-before-and-after-the-2020-election-2" id="toc-days-before-and-after-the-2020-election-2" class="nav-link" data-scroll-target="#days-before-and-after-the-2020-election-2">15 Days before and after the 2020 Election</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">EPPS 6356: Assignment 1</h1>
+<h1 class="title">U.S. Stock Sector Analysis</h1>
 </div>
 
+<div>
+  <div class="description">
+    This dashboard displays horizontal bar charts comparing various metrics of four U.S. Market Sectors
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Vincent Tellez </p>
-          </div>
-  </div>
     
   
     
@@ -137,86 +146,84 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="part-1-anscombes-quartet-data-sets" class="level4">
-<h4 class="anchored" data-anchor-id="part-1-anscombes-quartet-data-sets">Part 1: Anscombe’s Quartet Data Sets</h4>
-<p>This assignment had us look at Anscombe’s Quartet, a collection of four sets of data points that create the same linear regression model even though the distributions vary greatly across all models.</p>
+<h2 class="anchored">
+Comparing Stock Sector Metrics by Date Range
+</h2>
+<section id="introduction" class="level3">
+<h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
+<p>
+</p><div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The following horizontal bar graphs compare sector performance with four analytical measures for the 2020 U.S. presidential election. The first is drawdown, which describes a fall in share or portfolio price as a percentage of the peak price for the specified time. The second is volatility, or the standard deviation of returns for the period multiplied by the square root of the number of trading days, estimated at 252 days each year. Multiplying the volatility by 100 allows the bar graphs to report them as percentages. Sectors with lower volatility experience fewer price fluctuations, and vice versa.</div>
+<p>
+</p><div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The last two metrics, alpha, and beta, compare sector performance to a benchmark index for the market. This paper uses the S&amp;P 500 index. The alpha metric reports how much better or worse the sector did compared to the S&amp;P 500. For example, if the alpha is 3%, this sector earned 3% more than the S&amp;P 500 did for the period, the opposite is true for negative alpha values. Beta, on the other hand, compares sector volatility to that of the benchmark index. With the index fixed at 1, betas greater than 1 are considered more volatile than the market, and those below 1 are less volatile than the benchmark for that period.</div>
+<hr>
+<p>To implement the calculation of these variables in R, several packages are required:</p>
+<ul>
+<li>
+R package ‘readxl’ imports the dataset
+</li>
+<li>
+R packages ‘dyplr’ and ‘tidyr’ aid in data manipulation for panel data
+</li>
+<li>
+‘quantmod’ is a package that digests the stock data and calculates useful metrics like daily and average returns, which are needed to calculate the above metrics
+</li>
+<li>
+<p>‘ggplot2’ allows the final visualizations to be organized and customized for readability</p>
+</li></ul>
+</section>
+<section id="days-before-and-after-the-2020-election" class="level3">
+<h3 class="anchored" data-anchor-id="days-before-and-after-the-2020-election">60 Days before and After the 2020 Election</h3>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
-
-Response: y1
-          Df Sum Sq Mean Sq F value  Pr(&gt;F)   
-x1         1 27.510 27.5100   17.99 0.00217 **
-Residuals  9 13.763  1.5292                   
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-Analysis of Variance Table
-
-Response: y2
-          Df Sum Sq Mean Sq F value   Pr(&gt;F)   
-x2         1 27.500 27.5000  17.966 0.002179 **
-Residuals  9 13.776  1.5307                    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-Analysis of Variance Table
-
-Response: y3
-          Df Sum Sq Mean Sq F value   Pr(&gt;F)   
-x3         1 27.470 27.4700  17.972 0.002176 **
-Residuals  9 13.756  1.5285                    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-Analysis of Variance Table
-
-Response: y4
-          Df Sum Sq Mean Sq F value   Pr(&gt;F)   
-x4         1 27.490 27.4900  18.003 0.002165 **
-Residuals  9 13.742  1.5269                    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'openxlsx' was built under R version 4.3.3</code></pre>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                  lm1      lm2       lm3       lm4
-(Intercept) 3.0000909 3.000909 3.0024545 3.0017273
-x1          0.5000909 0.500000 0.4997273 0.4999091</code></pre>
-</div>
-</div>
-<div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Assignment-1_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="assignment8_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <hr>
+<p>
+</p><p>We can see there are significant changes between the two time periods. The Tech sector has greatly improved performance, however, the Healthcare sector does not exhibit the same improvements. We also see that volatility in the financial sector continued to increase where other sectors had decreases in their volatility.</p>
 </section>
-<section id="part-2-generative-art" class="level4">
-<h4 class="anchored" data-anchor-id="part-2-generative-art">Part 2: Generative Art</h4>
-<p>From <a href="https://aiartists.org/generative-art-design"><strong>AI Artists</strong></a>: <br> “Generative Art is a process of algorithmically generating new ideas, forms, shapes, colors or patterns. First, you create rules that provide boundaries for the creation process. Then a computer follows those tules to produce new works on your behalf.”</p>
-<p>Check out a couple examples below:</p>
-<p><img src="./images/genart1.png" alt="RAYTRACER TEST 063 by Anders Hoff" width="800"> <a href="https://log.inconvergent.net/list/2024-10-1c70/"><strong>RAYTRACER TEST 063 by Anders Hoff</strong></a></p>
-<p><br> <img src="./images/genart2.png" alt="Gyre 10-7000 by Mark J. Stock" width="800"> <a href="https://markjstock.com/#/gyre/"><strong>Gyre 10-7000 by Mark J. Stock</strong></a> —</p>
-</section>
-<section id="part-3-leaf.r" class="level4">
-<h4 class="anchored" data-anchor-id="part-3-leaf.r">Part 3: Leaf.R</h4>
+<section id="days-before-and-after-the-2020-election-1" class="level3">
+<h3 class="anchored" data-anchor-id="days-before-and-after-the-2020-election-1">30 Days before and after the 2020 Election</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Assignment-1_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="assignment8_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <hr>
+<p>
+</p><p>Comparing these time frames to the previous ones, we see an increase in volatility for every sector except for healthcare. We also see the 30 days after measures decrease as it transitions into the 60 day mark. Overall, the sectors are performing decently. There are likely some improvements to be made.</p>
 </section>
-<section id="part-4-chart-critique" class="level4">
-<h4 class="anchored" data-anchor-id="part-4-chart-critique">Part 4: Chart Critique</h4>
-<p>This graph was created by Veronika Samborska for Our World in Data using data from UNESCO Institute for Statistics.<br></p>
-<p><img src="./images/chart_crit2.png" alt="Nearly half of teenagers globally lack reading comprehension skills by Veronika Samborska" width="800"> [<strong>Source</strong>](https://ourworldindata.org/data-insights/nearly-half-of-teenagers-globally-cannot-read-with-comprehension)</p>
-<p><br> The author utilizes several techniques to get their message across. The contrasting styles of the title and subtitle draw the viewer’s attention to the top of the image first. Only four colors are used though multiple countries are listed. Most of the countries are not labeld, bringing attention to those at the top and those at the very bottom of the scale. The global average is reported in the middle. Each group of labeled observations has arrows coming from what are likely the author’s main message. Highlighting the top and lower groups in different colors helps the viewer compare the drastic difference in ratings. Everything on this graph has meaning and the author uses the space wisely.</p>
+<section id="days-before-and-after-the-2020-election-2" class="level3">
+<h3 class="anchored" data-anchor-id="days-before-and-after-the-2020-election-2">15 Days before and after the 2020 Election</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="assignment8_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p>15 days after the election we see the financial volatility peak. This value almost doubles from the volatility 15 days before the election. We had expected to see strong performance in the Healthcare and Tech sectors. The Tech sector improved, but the healthcare sector did not.</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>
+</p><div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Per Hypothesis I, some sectors do experience increased volatility as proximity to the election increases, primarily the financial and industrial sectors, but this is not seen across the other sectors. Since Biden was the democratic nominee, the tech and healthcare sectors are expected to experience greater performance. The returns on the tech sector prices are greater than the benchmark’s returns for the periods leading up to the election, however, afterwards the returns fall below the market. This is not true for the healthcare sector, whose returns are less than the benchmark for all periods before and after the election. Beta values for the tech sector indicate a decline in volatility compared to the market as the time before the election decreased, eventually resulting in the volatility of the sector falling below the benchmark’s volatility. Along with the reduced drawdown before and after the election, these metrics indicate strong performance in the tech sector. The betas for the healthcare sector show slight increases in volatility before the election and clear increases in volatility after the election. Healthcare drawdown decreases closer to the election but then increases significantly after the election. This sector did not experience the same positive performance as the tech sector.</div>
+<p>
+</p><div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Using similar analytical interpretations for the other two sectors, the financial sector had large swings in volatility and drawdown after the election. The industrial sector’s volatility peaked on election day but proceeded to decline steadily afterward. Tech had the greatest improvement in performance compared to the other sectors for this election.</div>
 
 
 </section>
