@@ -1,0 +1,27 @@
+project:
+  type: website
+
+website:
+  title: "Vincent Tellez"
+  navbar:
+    title: false
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About
+      - href: assignmain.qmd
+        text: EPPS 6356
+        
+
+format:
+  html:
+    theme:
+      light: journal
+      #dark: darkly
+    css: styles.css
+    highlight-style: ally
+    toc: true
+
+editor: visual
+
